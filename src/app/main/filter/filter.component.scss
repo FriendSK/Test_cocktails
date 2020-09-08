@@ -1,0 +1,66 @@
+@import "src/styles";
+
+.filter {
+  width: 220px;
+
+  &__list {
+    list-style-type: none;
+    margin: 20px 0 0 20px;
+  }
+
+  & li {
+    margin-bottom: 15px;
+
+      & input {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    & span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: $font-size;
+      line-height: 19px;
+      color: $color-dark-grey;
+      cursor: pointer;
+    }
+  }
+
+  &__error {
+    display: block;
+    font-size: $font-size-small;
+    margin: 0 0 0 20px ;
+    color: $error-message;
+    text-align: center;
+  }
+
+  &__button {
+    margin: 20px 0 15px 0;
+    display: flex;
+    justify-content: center;
+
+    & button {
+      font-family: $font-family-roboto;
+      background: $button-color;
+      width: 180px;
+      height: 39px;
+      border-radius: 10px;
+      font-size: $font-size;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 19px;
+      color: $color-white;
+      text-transform: uppercase;
+
+      &:hover {
+        cursor: pointer;
+        background: darken($button-color, 20%);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background: $button-color;
+      }
+    }
+  }
+}

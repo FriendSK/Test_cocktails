@@ -1,0 +1,10 @@
+@import "src/styles";
+
+aside {
+  border-right: 1px solid $border-color;
+}
+
+.container {
+  width: 1450px;
+  display: inline-flex;
+}

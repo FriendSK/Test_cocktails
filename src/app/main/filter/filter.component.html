@@ -1,0 +1,23 @@
+<div class="filter">
+  <ul class="filter__list" [formGroup]="filterCategories">
+    <li class="filter__item" *ngFor="let filter of filters?.drinks; let i = index">
+      <label>
+        <input type="checkbox"
+               [checked]="checked"
+               [value]="filter.strCategory"
+               (change)="onCheckboxChange($event)"
+        />
+        <span>
+        {{filter.strCategory}}
+      </span>
+      </label>
+
+    </li>
+  </ul>
+  <span class="filter__error" *ngIf="!isAtLeastOneCheckboxSelected">
+    Checkbox is required, select atleast one value.
+  </span>
+  <div class="filter__button">
+    <button type="button" [disabled]="isButtonDisabled" (click)="onApplyFilter()">apply</button>
+  </div>
+</div>

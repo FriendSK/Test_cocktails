@@ -1,0 +1,52 @@
+@import "src/styles";
+
+.drinks {
+  width: 1220px;
+  display: flex;
+  justify-content: center;
+
+  &__type {
+    margin-top: 25px;
+
+    & span {
+      font-family: $font-family-roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: $font-size-big;
+      line-height: 28px;
+      color: $font-color;
+    }
+  }
+
+  &__container {
+    width: 1090px;
+    border-top: 1px solid $border-color;
+    margin-top: 10px;
+  }
+
+  &__wrapper {
+    text-align: center;
+    width: 150px;
+
+    &-item {
+      margin-top: 20px;
+      width: 150px;
+      height: 150px;
+      box-shadow: 0px 2px 4px $color-black-opacity;
+
+      & img {
+
+      }
+    }
+
+    & p {
+      margin-top: 15px;
+      font-family: $font-family-roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: $font-size-medium;
+      line-height: 21px;
+      color: $item-font-color;
+    }
+  }
+}

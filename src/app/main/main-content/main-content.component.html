@@ -1,14 +1,26 @@
-<div class="drinks">
-
-  <div class="drinks__type">
-    <span>Ordinary</span>
-    <div class="drinks__container">
-      <div class="drinks__wrapper">
-        <div class="drinks__wrapper-item">
-          <img src="" alt="cocktail"/>
+<div class="main">
+  <div class="drinks" [ngClass]="{'no-content': !isContentLoaded}">
+    <div class="drinks__type" *ngFor="let drink of drinks"
+         infinite-scroll
+         [infiniteScrollDistance]="0.2"
+         [immediateCheck]="true"
+         [infiniteScrollThrottle]="200"
+         [alwaysCallback]="true"
+         [infiniteScrollDisabled]="!isScrollActive"
+         (scrolled)="nextCategoriesByScroll()"
+    >
+      <span>{{drink.name}}</span>
+      <div class="drinks__container">
+        <div class="drinks__wrapper" *ngFor="let item of drink.drinks">
+          <div class="drinks__wrapper-item">
+            <img [src]="item.strDrinkThumb" [alt]="item.strDrink"/>
+          </div>
+          <p>{{item.strDrink}}</p>
         </div>
-        <p>title</p>
       </div>
+    </div>
+    <div class="drinks__all-loaded" *ngIf="isAllCocktailsLoaded">
+      <span>All cocktails is loaded.</span>
     </div>
   </div>
 </div>

@@ -1,11 +1,11 @@
 @import "src/styles";
 
 .filter {
-  width: 220px;
+  max-width: 220px;
 
   &__list {
     list-style-type: none;
-    margin: 20px 0 0 20px;
+    padding: 20px 20px 0 20px;
   }
 
   & li {
@@ -51,6 +51,7 @@
       line-height: 19px;
       color: $color-white;
       text-transform: uppercase;
+      border: 0;
 
       &:hover {
         cursor: pointer;
@@ -64,3 +65,4 @@
     }
   }
 }
+

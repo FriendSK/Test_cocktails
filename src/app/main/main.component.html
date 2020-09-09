@@ -1,10 +1,12 @@
 <div class="container">
 
-<aside>
-  <app-filter></app-filter>
-</aside>
-<main>
-  <app-main-content></app-main-content>
-</main>
-
+  <aside>
+    <app-filter></app-filter>
+  </aside>
+  <main>
+    <app-main-content></app-main-content>
+  </main>
+  <div class="loader" *ngIf="isLoading$ | async">
+    <app-loader></app-loader>
+  </div>
 </div>

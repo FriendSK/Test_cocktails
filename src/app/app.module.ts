@@ -6,9 +6,12 @@ import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './main/filter/filter.component';
 import { MainComponent } from './main/main.component';
 import { MainContentComponent } from './main/main-content/main-content.component';
-import { CocktailsService } from "./shared/cocktails.service";
-import {  HttpClientModule } from "@angular/common/http";
-import { ReactiveFormsModule } from "@angular/forms";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoadingInterceptorService } from './shared/services/loading.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,21 @@ import { ReactiveFormsModule } from "@angular/forms";
     HeaderComponent,
     FilterComponent,
     MainComponent,
-    MainContentComponent
+    MainContentComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule,
+    MatProgressSpinnerModule
   ],
-  providers: [CocktailsService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

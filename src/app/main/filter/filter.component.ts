@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Filter } from "../main-content/filter.model";
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Subscription, throwError } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
-import { HttpParams } from "@angular/common/http";
-import { CocktailsService } from "../../shared/cocktails.service";
+import { Filter } from './filter.model';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
+import { CocktailsService } from '../../shared/services/cocktails.service';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterComponent implements OnInit, OnDestroy {
 
@@ -38,11 +38,11 @@ export class FilterComponent implements OnInit, OnDestroy {
     return this.filterCategories.controls.filterArray as FormArray;
   }
 
-  get isAtLeastOneCheckboxSelected(): Boolean {
-    return !this.filterCategories.controls['filterArray'].errors?.required;
+  get isAtLeastOneCheckboxSelected(): boolean {
+    return !this.filterCategories.controls.filterArray.errors?.required;
   }
 
-  get isButtonDisabled(): Boolean {
+  get isButtonDisabled(): boolean {
     return !this.isAtLeastOneCheckboxSelected;
   }
 
@@ -57,19 +57,24 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   addControlCheckboxes(): void {
-    this.filters.drinks.forEach((filter) => {
-      this.filtersFormArray.push(new FormControl(filter.strCategory))
-    });
+    if (this.checked) {
+      this.filters.drinks.forEach((filter) => {
+        this.filtersFormArray.push(new FormControl(filter.strCategory));
+      });
+    } else {
+      return;
+    }
+    this.cdRef.detectChanges();
   }
 
   onCheckboxChange(event): void {
     const filtersArray: FormArray = this.filterCategories.get('filterArray') as FormArray;
-    if (event.target.checked) {
+    if (event.target.checked && !filtersArray.value.includes(event.target.value)) {
       filtersArray.push((new FormControl(event.target.value)));
     } else {
       let i: number = 0;
       filtersArray.controls.forEach((item: FormControl) => {
-        if (item.value == event.target.value) {
+        if (item.value === event.target.value) {
           filtersArray.removeAt(i);
           return;
         }
@@ -79,10 +84,10 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   onApplyFilter(): void {
-    console.log(this.filterCategories.value);
+    this.cocktailsService.drinksCategoriesSubject.next(this.filterCategories.value.filterArray);
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
+    this.sub.unsubscribe();
   }
 }

@@ -1,6 +1,6 @@
 <div class="filter">
   <ul class="filter__list" [formGroup]="filterCategories">
-    <li class="filter__item" *ngFor="let filter of filters?.drinks; let i = index">
+    <li class="filter__item" *ngFor="let filter of filters?.drinks">
       <label>
         <input type="checkbox"
                [checked]="checked"
@@ -14,10 +14,12 @@
 
     </li>
   </ul>
-  <span class="filter__error" *ngIf="!isAtLeastOneCheckboxSelected">
+  <span class="filter__error" *ngIf="!isAtLeastOneCheckboxSelected && filters?.drinks?.length">
     Checkbox is required, select atleast one value.
   </span>
   <div class="filter__button">
-    <button type="button" [disabled]="isButtonDisabled" (click)="onApplyFilter()">apply</button>
+    <button type="button"
+            [disabled]="isButtonDisabled"
+            (click)="onApplyFilter()">apply</button>
   </div>
 </div>

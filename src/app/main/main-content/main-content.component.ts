@@ -34,7 +34,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
   }
 
   getFilteredCaterogies(): void {
-    this.cocktailService.drinksCategories.pipe(
+    this.cocktailService.drinksCategories$.pipe(
       takeUntil(this.unsubscribe$),
       tap((categories: string[]) => {
         this.setSelectedCategories(categories);

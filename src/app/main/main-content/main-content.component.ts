@@ -70,7 +70,6 @@ export class MainContentComponent implements OnInit, OnDestroy {
       tap((drink: Drinks) => {
         this.drinks.push(drink);
         this.counter++;
-        // this.handleScrollingIssue();
         this.cdRef.markForCheck();
       }),
       catchError((err) => throwError(err))
@@ -84,16 +83,6 @@ export class MainContentComponent implements OnInit, OnDestroy {
       return;
     }
     this.getDrinks();
-  }
-
-  handleScrollingIssue(): void {
-    if (!this.isScrollVisible(window.document.body) && this.selectedCategories.length > 1) {
-      this.checkForAvailableDrinks();
-    }
-  }
-
-  isScrollVisible({clientHeight, scrollHeight}): boolean {
-    return scrollHeight > clientHeight;
   }
 
   nextCategoriesByScroll(): void {

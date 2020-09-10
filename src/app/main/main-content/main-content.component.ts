@@ -40,6 +40,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
         this.setSelectedCategories(categories);
         this.resetProperties();
         this.checkForAvailableDrinks();
+        this.getNextCategory();
       }),
       catchError((err) => throwError(err))
     ).subscribe();
@@ -83,6 +84,16 @@ export class MainContentComponent implements OnInit, OnDestroy {
       return;
     }
     this.getDrinks();
+  }
+
+  getNextCategory(): void {
+    if (!this.isScrollVisible()) {
+      this.checkForAvailableDrinks();
+    }
+  }
+
+  isScrollVisible(): boolean {
+    return window.pageYOffset !== 0;
   }
 
   nextCategoriesByScroll(): void {

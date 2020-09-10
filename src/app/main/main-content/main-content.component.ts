@@ -70,7 +70,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
       tap((drink: Drinks) => {
         this.drinks.push(drink);
         this.counter++;
-        this.handleScrollingIssue();
+        // this.handleScrollingIssue();
         this.cdRef.markForCheck();
       }),
       catchError((err) => throwError(err))

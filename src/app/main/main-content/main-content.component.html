@@ -2,10 +2,10 @@
   <div class="drinks" [ngClass]="{'no-content': !isContentLoaded}">
     <div class="drinks__type" *ngFor="let drink of drinks"
          infinite-scroll
-         [infiniteScrollDistance]="0.2"
+         [infiniteScrollDistance]="0.1"
          [immediateCheck]="true"
          [infiniteScrollThrottle]="200"
-         [alwaysCallback]="true"
+         [alwaysCallback]="false"
          [infiniteScrollDisabled]="!isScrollActive"
          (scrolled)="nextCategoriesByScroll()"
     >

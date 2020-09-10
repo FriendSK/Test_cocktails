@@ -28,11 +28,13 @@
 
   &__error {
     display: block;
-    font-size: $font-size-small;
-    margin: 0 5px 0 20px ;
+    width: 85%;
+    font-size: 12px;
+    margin: 0 auto;
     color: $error-message;
     text-align: center;
   }
+
 
   &__button {
     margin: 20px 0 15px 0;

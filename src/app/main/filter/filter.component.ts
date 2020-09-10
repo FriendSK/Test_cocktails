@@ -68,7 +68,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   onCheckboxChange(event): void {
-    const filtersArray: FormArray = this.filterCategories.get('filterArray') as FormArray;
+    const filtersArray: FormArray = this.filtersFormArray;
     if (event.target.checked && !filtersArray.value.includes(event.target.value)) {
       filtersArray.push((new FormControl(event.target.value)));
     } else {

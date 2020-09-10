@@ -71,7 +71,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
         this.drinks.push(drink);
         this.counter++;
         this.handleScrollingIssue();
-        this.cdRef.detectChanges();
+        this.cdRef.markForCheck();
       }),
       catchError((err) => throwError(err))
     ).subscribe();

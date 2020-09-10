@@ -64,7 +64,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     } else {
       return;
     }
-    this.cdRef.detectChanges();
+    this.cdRef.markForCheck();
   }
 
   onCheckboxChange(event): void {
